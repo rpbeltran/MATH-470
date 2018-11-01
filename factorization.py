@@ -2,6 +2,24 @@
 from gcd       import euclids_gcd
 from primality import is_prime
 
+
+
+def is_smooth( n, b ):
+
+	factor_base = filter( is_prime, range( 2, b + 1 ) )
+
+	exponents = [ 0 for _ in factor_base ]
+
+	for i, e in enumerate( factor_base ):
+
+		while not n % e:
+
+			n /= e
+			exponents[i] += 1
+
+	return exponents if n == 1 else False
+	
+
 def pollards ( N, attempts = 100, a_max = 13 ):
 
 	# We seek p, q such that pq = N
